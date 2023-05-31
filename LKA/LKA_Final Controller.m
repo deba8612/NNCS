@@ -28,7 +28,7 @@ for i = 1:20
 end
 
 % Construct NN controller
-S = [50, 50, 50];
+S = [10, 10, 10];
 lka_net = feedforwardnet(S);
 for i = 1:length(S)
     lka_net.layers{i}.transferFcn = 'poslin';
