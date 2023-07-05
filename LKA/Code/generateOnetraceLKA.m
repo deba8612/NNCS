@@ -8,11 +8,11 @@
 
     % Calculate the system matrices A and B based on the given parameters.
     m = 1575; % mass of the vehicle (kg)
-    Iz = 2875;%
-    lf = 1.2;
-    lr = 1.6;
-    Cf = 19000;
-    Cr = 33000;
+    Iz = 2875;% yaw moment of inertia(kg.m^2)
+    lf = 1.2; % longitudinal distance from the center of gravity to the front tires (m)
+    lr = 1.6; % longitudinal distance from center of gravity to the rear tires (
+    Cf = 19000; % cornering stiffness of the front tires (N/rad)
+    Cr = 33000; % cornering stiffness of the rear tires (N/rad)
 
     A = [-(2 * Cf + 2 * Cr) / m / Vx, -Vx - (2 * Cf * lf - 2 * Cr * lr) / m / Vx; ...
          -(2 * Cf * lf - 2 * Cr * lr) / Iz / Vx, -(2 * Cf * lf^2 + 2 * Cr * lr^2) / Iz / Vx];
@@ -36,7 +36,7 @@
     lateral_deviation = logsout.get(3).Values.Data;%Lateral Deviation,input
     steering_angle = logsout.get(2).Values.Data;%Steering Angle, output
 
-    % Ensure all inputs have the same size.
+    % Ensure all scalar inputs have the same size.
     minLength = min([length(seq), length(relative_yaw_angle), length(lateral_deviation), length(steering_angle)]);
     relative_yaw_angle = relative_yaw_angle(1:minLength);
     lateral_deviation = lateral_deviation(1:minLength);
